@@ -9,8 +9,8 @@ class User < ActiveRecord::Base
   # validates :password_hash, :length => { :minimum => 6, :maximum => 20 }
   validates :fullname, presence: true
 
-  has_many :questions
-  has_many :answers
+  has_many :questions, dependent: :destroy
+  has_many :answers, dependent: :destroy
 
   # users.password_hash in the database is a :string
   include BCrypt
