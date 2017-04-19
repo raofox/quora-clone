@@ -1,6 +1,3 @@
-
-
-
 #returns a new HTML question form
 get '/questions/new' do
   erb :'questions/new'
@@ -21,7 +18,7 @@ end
 
 #display a list of questions
 get '/questions' do
-  @question = Question.all
+  @question = Question.all.order("created_at DESC")
   erb :'questions/index'
 end
 
@@ -44,17 +41,4 @@ end
 #delete a specific question
 delete '/questions/:id' do
 
-end
-
-#*********************************questions&answers controller***************************************
-#
-# #display a list of questions by a users
-get '/users/:id/questions' do
-  if current_user
-    @user = User.find_by (session[:id])
-    erb :'users/index'
-  else
-    flash[:msg] = "Please log in to ask a question"
-    redirect '/login'
-  end
 end
