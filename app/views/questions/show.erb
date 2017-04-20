@@ -9,8 +9,16 @@
 <p>COMMENT : <%= p.comment %></p>
 <p>COMMENTED BY : <%= p.user.fullname %></p>
 <p>REPLIED AT : <%= p.created_at %></p><br>
-<% end %>
 
+<form action="/answers/<%= p.id %>/upvote" method="post">
+  <input type="submit" value="UPVOTE | <%= AnswerVote.where(answer_id: p.id, vote: true).count %>" >
+</form>
+
+<form action="/answers/<%= p.id %>/downvote" method="post">
+  <input type="submit" value="DOWNVOTE | <%= AnswerVote.where(answer_id: p.id, vote: false).count %>" >
+</form>
+
+<% end %>
 
 
 <h3>Answer Questions</h3>

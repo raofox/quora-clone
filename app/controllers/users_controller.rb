@@ -38,7 +38,7 @@ post '/login' do
   end
 end
 
-#psot the logout command
+#post the logout command
 post '/logout' do
   session[:user_id] = nil
 	flash[:msg] = "Logged out succesfully"

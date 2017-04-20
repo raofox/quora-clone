@@ -1,8 +1,12 @@
 <h1> Questions </h1>
 
 <% @question.each do |p| %>
-<p><a href="/questions/<%=p.id%>"> TITLE: <%= p.title %></a></p>
-<p>DESCRIPTION : <%= p.description %></p>
-<p>USER ID : <%= p.user_id %></p>
-<p>QUESTION ASKED AT : <%= p.created_at %></p><br>
+  <p><a href="/questions/<%=p.id%>"> TITLE: <%= p.title %></a></p>
+  <p>DESCRIPTION : <%= p.description %></p>
+  <p>USER ID : <%= p.user_id %></p>
+  <p>QUESTION ASKED AT : <%= p.created_at %></p>
+  <form action="/questions/<%= p.id %>/votes" method="post">
+    <input type="submit" value="DOWNVOTE | <%= QuestionVote.where(question_id: p.id, vote: true).count %>" >
+  </form>
+
 <% end %>
